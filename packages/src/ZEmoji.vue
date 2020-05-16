@@ -5,78 +5,69 @@
     @mouseout.stop="onMouseOut"
     @click="onClick"
   >
-    <div
-      class="poper"
-      :class="`poper-${placement}`"
-      v-show="showEmoji"
-    >
-      <z-emoji-list
-        class="poper-list"
-        @select="onSelect"
-      ></z-emoji-list>
+    <div class="poper" :class="`poper-${placement}`" v-show="showEmoji">
+      <z-emoji-list class="poper-list" @select="onSelect"></z-emoji-list>
     </div>
     <span>
       <template v-if="$slots.default">
         <slot></slot>
       </template>
-      <img
-        v-else
-        src="./icon/png/1.png"
-        alt="表情"
-      >
+      <img v-else src="./icon/png/1.png" alt="表情" />
     </span>
   </div>
 </template>
 
 <script>
-import ZEmojiList from './ZEmojiList'
+import ZEmojiList from "./ZEmojiList";
 
 export default {
+  name: "ZEmoji",
+
   props: {
     placement: {
       type: String,
-      default: 'top-start'
+      default: "top-start",
     },
     trigger: {
       type: String,
-      default: 'hover'
-    }
+      default: "hover",
+    },
   },
 
   data() {
     return {
-      showEmoji: false
-    }
+      showEmoji: false,
+    };
   },
 
   components: {
-    ZEmojiList
+    ZEmojiList,
   },
 
   methods: {
     onClick() {
-      if (this.trigger === 'click') {
-        this.showEmoji = !this.showEmoji
+      if (this.trigger === "click") {
+        this.showEmoji = !this.showEmoji;
       }
     },
 
     onMouseOver() {
-      if (this.trigger === 'hover') {
-        this.showEmoji = true
+      if (this.trigger === "hover") {
+        this.showEmoji = true;
       }
     },
 
     onMouseOut() {
-      if (this.trigger === 'hover') {
-        this.showEmoji = false
+      if (this.trigger === "hover") {
+        this.showEmoji = false;
       }
     },
 
     onSelect(code, el) {
-      this.$emit('select', code, el)
-    }
-  }
-}
+      this.$emit("select", code, el);
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
@@ -88,7 +79,7 @@ export default {
     z-index: 10;
     &:before {
       position: absolute;
-      content: '';
+      content: "";
       display: block;
       width: 10px;
       height: 10px;

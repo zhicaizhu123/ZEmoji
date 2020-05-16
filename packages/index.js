@@ -9,7 +9,7 @@ export const ZEmojiList = EmojiList;
 const ZEmojiInstall = {};
 
 ZEmojiInstall.install = function (Vue) {
-  Vue.component("ZEmoji", Emoji);
+  Vue.component(Emoji.name, Emoji);
 };
 
 export default ZEmojiInstall;

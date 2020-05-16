@@ -1,12 +1,9 @@
 <template>
-  <div
-    class="z-emoji-list"
-    :style="{width: listWidth, height: listHeight}"
-  >
+  <div class="z-emoji-list" :style="{ width: listWidth, height: listHeight }">
     <z-emoji-item
       v-for="item in emojiList"
       :key="item.text"
-      :item="item"
+      :text="item.text"
       @select="onSelect"
     >
     </z-emoji-item>
@@ -14,51 +11,54 @@
 </template>
 
 <script>
-import { emojiList } from './emoji'
-import ZEmojiItem from './ZEmojiItem'
+import { emojiList } from "./emoji";
+import ZEmojiItem from "./ZEmojiItem";
 
 export default {
+  name: "ZEmojiList",
+
   components: {
-    ZEmojiItem
+    ZEmojiItem,
   },
+
   props: {
     width: {
       type: [String, Number],
-      default: '275px'
+      default: "275px",
     },
     height: {
       type: [String, Number],
-      default: '200px'
-    }
+      default: "200px",
+    },
   },
 
   data() {
     return {
-      emojiList: emojiList
-    }
+      emojiList: emojiList,
+    };
   },
 
   computed: {
     listWidth() {
-      if (typeof this.width === 'number') {
-        return `${this.width}px`
+      if (typeof this.width === "number") {
+        return `${this.width}px`;
       }
-      return this.width
+      return this.width;
     },
     listHeight() {
-      if (typeof this.height === 'number') {
-        return `${this.height}px`
+      if (typeof this.height === "number") {
+        return `${this.height}px`;
       }
-      return this.height
-    }
+      return this.height;
+    },
   },
 
   methods: {
     onSelect(code, el) {
-      this.$emit('select', code, el)
-    }
-  }
-}
+      this.$emit("select", code, el);
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
